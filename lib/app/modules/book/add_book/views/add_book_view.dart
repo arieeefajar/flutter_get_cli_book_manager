@@ -31,7 +31,24 @@ class AddBookView extends GetView<AddBookController> {
             ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(onPressed: () {}, child: const Text("Add Book")),
+          TextField(
+            controller: controller.avatarC,
+            decoration: InputDecoration(
+              labelText: 'Avatar URL',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              bookC.addBook(
+                controller.bookNameC.text,
+                controller.authorC.text,
+                controller.avatarC.text,
+              );
+            },
+            child: const Text("Add Book"),
+          ),
         ],
       ),
     );

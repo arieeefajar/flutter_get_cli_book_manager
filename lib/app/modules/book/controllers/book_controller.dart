@@ -31,10 +31,48 @@ class BookController extends GetxController {
     }
   }
 
-  void addBook(Book book) async {
-    final response = await provider.addBook(book);
-    if (response.statusCode == 201 || response.statusCode == 200) {
-      fetchBooks();
+  void addBook(String name, String author, String avatar) async {
+    if (name.isNotEmpty && author.isNotEmpty) {
+      final book = Book(
+        name: name,
+        author: author,
+        avatar: avatar,
+        createdAt: DateTime.now().toIso8601String(),
+      );
+
+      try {
+        final respone = await provider.addBook(book);
+        if (respone.statusCode == 201 || respone.statusCode == 200) {
+          books.add(book);
+          Get.back();
+          await Future.delayed(Duration(milliseconds: 300));
+          Get.snackbar(
+            'Success',
+            'Buku "${book.name}" berhasil ditambahkan',
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        } else {
+          Get.snackbar(
+            'Error',
+            'Gagal menambahkan buku: ${respone.statusText}',
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        }
+        print('Book added successfully: ${book.name}');
+        // Get.back();
+      } catch (e) {
+        Get.snackbar(
+          'Error',
+          'Gagal menambahkan buku: ${e.toString()}',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } else {
+      Get.snackbar(
+        'Error',
+        'Please fill in all fields',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 

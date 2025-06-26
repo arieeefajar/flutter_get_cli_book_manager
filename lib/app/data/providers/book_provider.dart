@@ -14,7 +14,7 @@ class BookProvider extends GetConnect {
   );
 
   Future<Response<Book>> addBook(Book book) async => await post(
-    '$baseUrl/books',
+    '/books',
     book.toJson(),
     decoder: (data) => Book.fromJson(data),
   );
