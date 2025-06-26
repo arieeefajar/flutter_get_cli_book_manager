@@ -1,3 +1,4 @@
+import 'package:book_manager/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class BookView extends GetView<BookController> {
         );
       }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Get.toNamed(Routes.ADD_BOOK),
         child: Icon(Icons.add),
       ),
     );

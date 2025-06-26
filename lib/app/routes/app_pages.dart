@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/book/add_book/bindings/add_book_binding.dart';
+import '../modules/book/add_book/views/add_book_view.dart';
 import '../modules/book/bindings/book_binding.dart';
 import '../modules/book/views/book_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -22,6 +24,13 @@ class AppPages {
       name: _Paths.BOOK,
       page: () => const BookView(),
       binding: BookBinding(),
+      children: [
+        GetPage(
+          name: _Paths.ADD_BOOK,
+          page: () => const AddBookView(),
+          binding: AddBookBinding(),
+        ),
+      ],
     ),
   ];
 }
