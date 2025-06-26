@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class BookController extends GetxController {
   var books = <Book>[].obs;
+  var isLoading = true.obs;
   final provider = BookProvider();
 
   @override
@@ -13,15 +14,20 @@ class BookController extends GetxController {
   }
 
   void fetchBooks() async {
-    final response = await provider.getBooks();
-    if (response.statusCode == 200) {
-      books.value = response.body!;
-    } else {
+    try {
+      isLoading.value = true;
+      final response = await provider.getBooks();
+      if (response.statusCode == 200) {
+        books.value = response.body!;
+      }
+    } catch (e) {
       Get.snackbar(
         'Error',
-        'Gagal mengambil data buku',
+        'Gagal mengambil data buku: ${e.toString()}',
         snackPosition: SnackPosition.BOTTOM,
       );
+    } finally {
+      isLoading.value = false;
     }
   }
 
