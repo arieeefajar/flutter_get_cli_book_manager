@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../modules/book/add_book/bindings/add_book_binding.dart';
 import '../modules/book/add_book/views/add_book_view.dart';
 import '../modules/book/bindings/book_binding.dart';
+import '../modules/book/edit_book/bindings/edit_book_binding.dart';
+import '../modules/book/edit_book/views/edit_book_view.dart';
 import '../modules/book/views/book_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -29,6 +31,11 @@ class AppPages {
           name: _Paths.ADD_BOOK,
           page: () => const AddBookView(),
           binding: AddBookBinding(),
+        ),
+        GetPage(
+          name: _Paths.EDIT_BOOK,
+          page: () => const EditBookView(),
+          binding: EditBookBinding(),
         ),
       ],
     ),

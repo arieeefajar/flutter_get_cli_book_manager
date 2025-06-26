@@ -30,12 +30,23 @@ class BookView extends GetView<BookController> {
                 backgroundColor: Colors.grey[200],
               ),
               title: Text(book.name ?? 'No Title'),
-              subtitle: Text(book.createdAt ?? 'No Date'),
+              subtitle: Text(book.author ?? 'No Author'),
               trailing: IconButton(
                 onPressed: () => controller.deleteBook(book.id!),
                 icon: Icon(Icons.delete, color: Color(0xFFD32F2F)),
               ),
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(
+                  Routes.EDIT_BOOK,
+                  arguments: {
+                    'id': book.id,
+                    'name': book.name,
+                    'avatar': book.avatar,
+                    'author': book.author,
+                    'createdAt': book.createdAt,
+                  },
+                );
+              },
             );
           },
         );

@@ -45,6 +45,7 @@ class BookController extends GetxController {
         if (respone.statusCode == 201 || respone.statusCode == 200) {
           books.add(book);
           Get.back();
+          fetchBooks();
           await Future.delayed(Duration(milliseconds: 300));
           Get.snackbar(
             'Success',
@@ -58,7 +59,6 @@ class BookController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
           );
         }
-        print('Book added successfully: ${book.name}');
         // Get.back();
       } catch (e) {
         Get.snackbar(
