@@ -125,9 +125,30 @@ class BookController extends GetxController {
   }
 
   void deleteBook(int id) async {
-    final response = await provider.deleteBook(id);
-    if (response.statusCode == 200) {
-      fetchBooks();
+    try {
+      final response = await provider.deleteBook(id);
+      if (response.statusCode == 200) {
+        books.removeWhere((book) => book.id == id);
+        fetchBooks();
+        await Future.delayed(Duration(milliseconds: 300));
+        Get.snackbar(
+          'Success',
+          'Buku berhasil dihapus',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      } else {
+        Get.snackbar(
+          'Error',
+          'Gagal menghapus buku: ${response.statusText}',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Gagal menghapus buku: ${e.toString()}',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }

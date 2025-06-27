@@ -25,6 +25,5 @@ class BookProvider extends GetConnect {
     decoder: (data) => Book.fromJson(data),
   );
 
-  Future<Response> deleteBook(int id) async =>
-      await delete('$baseUrl/books/$id');
+  Future<Response> deleteBook(int id) async => await delete('/books/$id');
 }

@@ -32,7 +32,20 @@ class BookView extends GetView<BookController> {
               title: Text(book.name ?? 'No Title'),
               subtitle: Text(book.author ?? 'No Author'),
               trailing: IconButton(
-                onPressed: () => controller.deleteBook(book.id!),
+                onPressed: () {
+                  Get.defaultDialog(
+                    title: 'Delete Book',
+                    middleText:
+                        'Are you sure you want to delete "${book.name}"?',
+                    textCancel: 'Cancel',
+                    textConfirm: 'Delete',
+                    confirmTextColor: Colors.white,
+                    onConfirm: () {
+                      Get.back();
+                      controller.deleteBook(book.id!);
+                    },
+                  );
+                },
                 icon: Icon(Icons.delete, color: Color(0xFFD32F2F)),
               ),
               onTap: () {
