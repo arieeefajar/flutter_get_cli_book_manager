@@ -76,10 +76,51 @@ class BookController extends GetxController {
     }
   }
 
-  void updateBook(Book book) async {
-    final response = await provider.updateBook(book.id!, book);
-    if (response.statusCode == 200) {
-      fetchBooks();
+  void updateBook(int id, String name, String author, String avatar) async {
+    if (name.isNotEmpty && author.isNotEmpty && avatar.isNotEmpty) {
+      final book = Book(
+        id: id,
+        name: name,
+        author: author,
+        avatar: avatar,
+        createdAt: DateTime.now().toIso8601String(),
+      );
+
+      try {
+        final response = await provider.updateBook(id, book);
+        if (response.statusCode == 200) {
+          final index = books.indexWhere((b) => b.id == id);
+          if (index != -1) {
+            books[index] = book;
+          }
+          Get.back();
+          fetchBooks();
+          await Future.delayed(Duration(milliseconds: 300));
+          Get.snackbar(
+            'Success',
+            'Buku "${book.name}" berhasil diperbarui',
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        } else {
+          Get.snackbar(
+            'Error',
+            'Gagal memperbarui buku: ${response.statusText}',
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        }
+      } catch (e) {
+        Get.snackbar(
+          'Error',
+          'Gagal memperbarui buku: ${e.toString()}',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } else {
+      Get.snackbar(
+        'Error',
+        'Please fill in all fields',
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 

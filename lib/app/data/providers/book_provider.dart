@@ -20,7 +20,7 @@ class BookProvider extends GetConnect {
   );
 
   Future<Response<Book>> updateBook(int id, Book book) async => await put(
-    '$baseUrl/books/${book.id}',
+    '/books/${book.id}',
     book.toJson(),
     decoder: (data) => Book.fromJson(data),
   );
