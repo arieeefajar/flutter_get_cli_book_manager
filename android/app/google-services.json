@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "615028403790",
+    "project_id": "my-first-firebase-for-flutter",
+    "storage_bucket": "my-first-firebase-for-flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615028403790:android:e585b4058a363e6fb69d1f",
+        "android_client_info": {
+          "package_name": "com.example.book_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB74mSVf-6KrIvvBIDaR3aaP9I4uS7ye1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
