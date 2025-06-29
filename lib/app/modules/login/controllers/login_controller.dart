@@ -16,6 +16,7 @@ class LoginController extends GetxController {
       Get.snackbar('Success', 'Login successful');
       Get.offAllNamed(Routes.HOME);
     } on FirebaseAuthException catch (e) {
+      print(e.message);
       Get.snackbar('Login Gagal', e.message ?? 'Terjadi kesalahan');
     } catch (e) {
       Get.snackbar('Error', 'Terjadi kesalahan: $e');

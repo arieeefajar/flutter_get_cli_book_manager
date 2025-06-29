@@ -16,6 +16,7 @@ class LoginView extends GetView<LoginController> {
         child: Column(
           children: [
             TextField(
+              controller: controller.emailC,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -23,13 +24,18 @@ class LoginView extends GetView<LoginController> {
             ),
             SizedBox(height: 10),
             TextField(
+              controller: controller.passwordC,
               decoration: const InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
+              obscureText: true,
             ),
             SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: const Text('Login')),
+            ElevatedButton(
+              onPressed: () => controller.login(),
+              child: const Text('Login'),
+            ),
             TextButton(
               onPressed: () => Get.toNamed(Routes.REGISTER),
               child: const Text('Register'),
