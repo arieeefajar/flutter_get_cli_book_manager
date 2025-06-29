@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
+import '../controllers/register_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+class RegisterView extends GetView<RegisterController> {
+  const RegisterView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login Firebase'), centerTitle: true),
+      appBar: AppBar(title: const Text('Register Firebase'), centerTitle: true),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             TextField(
+              controller: controller.emailC,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
@@ -23,18 +24,22 @@ class LoginView extends GetView<LoginController> {
             ),
             SizedBox(height: 10),
             TextField(
+              controller: controller.passwordC,
               decoration: const InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
+              obscureText: true,
             ),
-            SizedBox(height: 20),
-            ElevatedButton(onPressed: () {}, child: const Text('Login')),
-            TextButton(
-              onPressed: () => Get.toNamed(Routes.REGISTER),
+            SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: () => controller.register(),
               child: const Text('Register'),
             ),
-            TextButton(onPressed: () {}, child: const Text('Forgot Password')),
+            TextButton(
+              onPressed: () => Get.toNamed(Routes.LOGIN),
+              child: const Text('Login'),
+            ),
           ],
         ),
       ),
