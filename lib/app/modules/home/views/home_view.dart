@@ -8,12 +8,20 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('HomeView'), centerTitle: true),
-      body: Center(
-        child: FloatingActionButton(
-          onPressed: () => Get.toNamed('/book'),
-          child: Text('Go to Book Manager'),
+    return Obx(
+      () => Scaffold(
+        body: controller.pages[controller.currentIndex.value],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: controller.currentIndex.value,
+          onTap: controller.changePage,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book),
+              label: 'Book Manager',
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          ],
         ),
       ),
     );
