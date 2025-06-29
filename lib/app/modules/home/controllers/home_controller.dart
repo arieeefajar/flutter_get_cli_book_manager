@@ -1,4 +1,6 @@
 import 'package:book_manager/app/modules/book/controllers/book_controller.dart';
+import 'package:book_manager/app/modules/profile/controllers/profile_controller.dart';
+import 'package:book_manager/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../book/views/book_view.dart';
@@ -10,6 +12,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     Get.lazyPut(() => BookController());
+    Get.lazyPut(() => ProfileController());
   }
 
   final List<Widget> pages = [
@@ -20,7 +23,7 @@ class HomeController extends GetxController {
       ),
     ),
     BookView(),
-    const Center(child: Text('Profile')),
+    ProfileView(),
   ];
 
   void changePage(int index) {
