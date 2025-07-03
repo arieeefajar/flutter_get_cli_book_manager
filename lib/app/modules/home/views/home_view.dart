@@ -14,12 +14,17 @@ class HomeView extends GetView<HomeController> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.currentIndex.value,
           onTap: controller.changePage,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+          showSelectedLabels: true,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
               icon: Icon(Icons.book),
               label: 'Book Manager',
             ),
+            BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Maps'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
         ),

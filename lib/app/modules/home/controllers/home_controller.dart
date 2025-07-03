@@ -1,4 +1,6 @@
 import 'package:book_manager/app/modules/book/controllers/book_controller.dart';
+import 'package:book_manager/app/modules/map/controllers/map_controller.dart';
+import 'package:book_manager/app/modules/map/views/map_view.dart';
 import 'package:book_manager/app/modules/profile/controllers/profile_controller.dart';
 import 'package:book_manager/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     Get.lazyPut(() => BookController());
+    Get.lazyPut(() => MapController());
     Get.lazyPut(() => ProfileController());
   }
 
@@ -23,6 +26,7 @@ class HomeController extends GetxController {
       ),
     ),
     BookView(),
+    MapView(),
     ProfileView(),
   ];
 
